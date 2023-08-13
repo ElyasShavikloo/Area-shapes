@@ -1,0 +1,117 @@
+from tkinter import *
+from tkinter import messagebox
+
+
+window = Tk()
+window.geometry('450x450')
+window.title('َArea of Shapes')
+window.configure(bg="yellow")
+
+
+
+
+#label
+label = Label(window, text = 'welcome dears', fg = 'yellow', bg = 'black', font = 'Times 23 italic bold', height = 1)
+label.pack()
+
+label2 = Label(window, text="", font='Times 17 italic bold')
+label2.place(x=10 , y=170)
+
+label3 = Label(window,text='Number 1 :')
+label3.place(x=12 , y=100)
+
+label4 = Label(window,text='Number 2 :')
+label4.place(x=12 , y=120)
+
+label5 = Label(window,text=' First, enter the desired numbers according to \nthe shape then click the desired button',bg='black',fg='yellow')
+label5.place(x=7 , y=317)
+
+label6 = Label(window,text='Square area = square_length * square_length \n Rectangle area = rectangle_length * rectangle_width \n Triangle area = (1 / 2) * base * height \n Rhombus area = (diagonal1 * diagonal2) / 2 \n Circle area =radius * radius * 3.14 (Pi) ',bg='black',fg='yellow')
+label6.place(x=7 , y=355)
+
+
+#input
+n1 = Entry(window)
+n1.place(x=77 , y=100)
+n2= Entry(window)
+n2.place(x=77 , y=120)
+
+
+#function
+def square_area():
+   square_length = int(n1.get())
+   res = square_length * square_length                        # area of square
+   label2.config(text=res)
+   return res
+
+def rectangle_area():
+   rectangle_length = int(n1.get())
+   rectangle_width = int(n2.get())
+   res = rectangle_length * rectangle_width                   # area of rectangle
+   label2.config(text=res)
+   return res
+
+def triangle_area():
+   base = int(n1.get())
+   height = int(n2.get())
+   res = (1 / 2) * base * height                              # area of triangle
+   label2.config(text=res)
+   return res
+
+def rhombus_area():
+   diagonal1 = int(n1.get())
+   diagonal2 = int(n2.get())
+   res = (diagonal1 * diagonal2) / 2                          # area of rhombus
+   label2.config(text=res)
+   return res
+
+def circle_area():
+   radius = int(n1.get())
+   res = radius * radius * 3.14                               # area of circle
+   label2.config(text=res)
+   return res
+
+
+def show_about():
+    messagebox.showinfo('developer', 'written by Elyas Shavikloo follow me in instagram : @elyasshavikloo7')
+
+
+def show_ask():
+    result = messagebox.askquestion('exit ?', 'are you sure ?')
+    if result == 'yes':
+        window.quit()
+    else:
+        pass
+
+#button
+square_area_button = Button(window, text='Square area', font='Times 17 italic bold', fg='white', bg= 'green', activebackground= 'pink', activeforeground= 'blue', command=square_area)
+square_area_button.place(x=230 , y=70)
+
+rectangle_area_button = Button(window, text='Rectangle area', font='Times 17 italic bold', fg='white', bg= 'green', activebackground= 'pink', activeforeground= 'blue', command=rectangle_area)
+rectangle_area_button.place(x=230 , y=120)
+
+triangle_area_button = Button(window, text='Triangle area', font='Times 17 italic bold', fg='white', bg= 'green', activebackground= 'pink', activeforeground= 'blue', command=triangle_area)
+triangle_area_button.place(x=230 , y=170)
+
+rhombus_area_button = Button(window, text='Rhombus area', font='Times 17 italic bold', fg='white', bg= 'green', activebackground= 'pink', activeforeground= 'blue', command=rhombus_area)
+rhombus_area_button.place(x=230 , y= 220)
+
+circle_area_button = Button(window, text='Circle area', font='Times 17 italic bold', fg='white', bg= 'green', activebackground= 'pink', activeforeground= 'blue', command=circle_area)
+circle_area_button.place(x=230 , y=270)
+
+
+# menu
+
+menubar = Menu(window)
+
+
+window.config(menu=menubar)
+filemenu= Menu(window,tearoff=0)
+
+filemenu.add_command(label='about',command=show_about)
+filemenu.add_command(label='exit')
+menubar.add_cascade(label='Menu', menu= filemenu)
+menubar.add_command(label='Exit',command=show_ask)
+
+
+window.mainloop()
